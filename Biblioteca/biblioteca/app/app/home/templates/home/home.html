@@ -1,0 +1,164 @@
+{% extends 'base-add-home.html' %}
+{% block content %}
+<div class="container">
+    
+    <!--<h3>Cadastrar autor</h3>-->
+    <br>
+    <form action="">
+      <div class="form-group">
+          <label id="labelAcao">Escolha uma ação :</label>
+          <select class="form-control" name="acao" id="acao" onchange="carregaCampos()">
+              <!--<option value="0">Selecione...</option> -->
+              <optgroup label="Cadastro">
+                <option value="1">1: Cadastro autor</option> 
+                <option value="2">2: Cadastro editora</option> 
+                <option value="3">3: Cadastro area</option>  
+                <option value="4">4: Cadastro livro</option>  
+                <option value="5">5: Cadastro funcionário</option> 
+                <option value="6">6: Cadastro emprestimo</option>
+              </optgroup>
+              <optgroup label="Relatorio">
+                <option value="101">1: Relatorio de emprestimos</option>         
+                <option value="102">2: Relatorio de livros</option>   
+               
+              </optgroup>
+          </select>
+          <br>
+          <br>
+          <div id="CadastroAutor">
+              <label id="labelAutor">Autor :</label>
+              <input type="text" id="autor" name="autor" class="form-control">
+          </div>
+          <div id="CadastroEditora">
+                <label id="labelEditora">Editora :</label>
+                <input type="text" id="editora" name="editora" class="form-control">
+          </div>
+          <div id="CadastroArea">
+                <label id="labelArea">Area :</label>
+                <input type="text" id="area" name="area" class="form-control">
+          </div>
+          <div id="CadastroLivro">
+                <label id="labelEditora">Titulo :</label>
+                <input type="text" id="titulo" name="titulo" class="form-control">
+                <br>
+                <label id="labelAutorID">Nome autor :</label>
+                <select class="form-control" name="AutorID" id="AutorID" style="max-width:100%">
+                    <option value="Selecione..." SELECTED>Selecione...</option>
+                </select>    
+                <br>
+                <label id="labelAreaID">Gênero  :</label>
+                <select class="form-control" name="AreaID" id="AreaID" style="max-width:100%">
+                    <option value="Selecione..." SELECTED>Selecione...</option>
+                </select>  
+                <br> 
+                <label id="labelEdicao">Edição :</label>
+                <input type="text" id="Edicao" name="Edicao" class="form-control" style="max-width:20%">
+                <br>
+                <label id="labelEditoraID">Nome Editora :</label>
+                <select class="form-control" name="EditoraID" id="EditoraID" style="max-width:100%">
+                    <option value="Selecione..." SELECTED>Selecione...</option>
+                </select>  
+                <br> 
+                <label id="labelQuantidade">Quantidade :</label>
+                <input type="number" id="Quantidade" name="Quantidade" class="form-control" style="max-width:20%">
+                <br>
+                <label id="labelPaginas">Paginas :</label>
+                <input type="number" id="Paginas" name="Paginas" class="form-control" style="max-width:20%">
+                <br>
+                <label id="labelArmario">Armário :</label>
+                <input type="text" id="Armario" name="Armario" class="form-control" placeholder="EX: IV">
+                <br>
+                <label id="labelAno">Ano :</label>
+                <input type="text" id="Ano" name="Ano" class="form-control">
+                <br>
+                <label id="labelPrateleira">Prateleira :</label>
+                <input type="text" id="Prateleira" name="Prateleira" class="form-control" placeholder="EX: 5">
+                <br>
+                <label id="labelISBN">ISBN :</label>
+                <input type="text" id="ISBN" name="ISBN" class="form-control">
+                <br>
+                              
+          </div>
+          <div id="CadastroFuncionario">
+            <label id="labelMatricula">Matricula :</label>
+            <input type="text" id="matricula" name="matricula" class="form-control" maxlength="5">
+            <br>
+            <label id="labelNomeFuncionario">Nome funcionário :</label>
+            <input type="text" id="nomeFuncionario" name="nomeFuncionario" class="form-control">
+            <br>
+            <label id="labelCpfFuncionario">CPF funcionário :</label>
+            <input type="text" id="CpfFuncionario" name="CpfFuncionario" class="form-control" maxlength="11">
+            <br>
+            <label id="labelEmailFuncionario">E-mail :</label>
+            <input type="email" id="EmailFuncionario" name="EmailFuncionario" class="form-control">
+            <br>
+            <label id="labelTelefone">Telefone :</label>
+            <input type="text" id="TelefoneFuncionario" name="TelefoneFuncionario" class="form-control">
+            <br>
+          </div>
+          <div id="CadastroEmprestimo">
+              <label id="labelAreaIDEmprestimo">Area :</label>
+              <select class="form-control" name="AreaIDEmprestimo" id="AreaIDEmprestimo" style="max-width:100%">
+                    <option value="Selecione..." SELECTED>Selecione...</option>
+                </select>  
+              <br>
+              <label id="labelLivroID">Livros :</label>
+              <select class="form-control" name="LivroIDEmprestimo" id="LivroIDEmprestimo" style="max-width:100%">
+                    <option value="Selecione..." SELECTED>Selecione...</option>
+                </select>  
+              <br>
+              <label id="labelDataEmprestimo">Data de emprestimo :</label>
+              <input type="date" id="DataEmprestimo" name="DataEmprestimo" class="form-control">
+              <br>
+              <label id="labelDataDevolucao">Data de devolução :</label>
+              <input type="date" id="DataDevolucao" name="DataDevolucao" class="form-control">
+              <br>
+              <label id="labelSupervisor">Codigo supervisor :</label>
+              <input type="text" id="SupervisorDevolucao" name="SupervisorDevolucao" class="form-control" value="1604" disabled>
+              <br>
+              <label id="labelFuncionarioMatricula">Matricula do funcionário :</label>
+              <input type="text" id="FuncionarioMatriculaDevolucao" name="FuncionarioMatriculaDevolucao" class="form-control">
+              <br>
+              <label id="labelStatusDevolucao">Status pedido :</label>
+              <select class="form-control" name="StatusDevolucao" id="StatusDevolucao" style="max-width:100%">
+                  <option value="Em aberto" SELECTED>Em aberto</option>
+                  <option value="Devolvido" disabled>Devolvido</option>
+                  <option value="Em atraso" disabled>Em atraso</option>
+              </select>  
+              <br>
+          </div>
+          <div id="RelatorioEmprestimos">
+            
+          </div>
+          <div id="DivLabelCodigoLivro">
+              <label id="labelCodigoLivro">Digite o codigo do livro :</label>
+              <input type="text" id="DivCodigoLivro" name="DivCodigoLivro" class="form-control" style="max-width:10%">
+              <br>
+
+              <label id="labelBaixaStatusDevolucao">Status pedido :</label>
+              <select class="form-control" name="BaixaStatusDevolucao" id="BaixaStatusDevolucao" onchange="carregaDivProrrogacao(this);" style="max-width:100%">
+                  <option value="Devolvido" >Devolvido</option>
+                  <option value="Prorrogar" >Prorrogar</option>
+              </select> 
+    
+              <br>
+              <div id="divBaixaDataProrrogacao">
+                  <label id="labelBaixaDataProrrogacao">Prorrogar até :</label>
+                  <input type="date" id="BaixaDataProrrogacao" name="BaixaDataProrrogacao" class="form-control" style="max-width:20%">
+              </div>
+              
+              <br>
+          </div>
+
+          <div id="RelatorioLivrosExistentes">
+              
+          </div>
+            
+        
+      </div>
+      <div id="butao">
+            <!--<input id="btn-processar" class="btn btn-primary"  onclick="SalvaAutor()" type="button" value="Cadastrar">-->
+      </div>  
+    </form> 
+  </div>
+{% endblock %}

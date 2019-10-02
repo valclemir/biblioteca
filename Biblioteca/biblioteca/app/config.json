@@ -1,0 +1,8 @@
+{
+    "servidor_banco": [
+        {"host": "10.85.0.6", 
+        "username": "osbi", 
+        "password": "1AuditestE1", 
+        "db": "SIAA"}
+    ]
+}

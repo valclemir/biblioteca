@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Biblioteca</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{{ url_for('.static', filename='css/lib/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ url_for('.static', filename='css/lib/dataTables.min.css') }}" rel="stylesheet">
+  
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Biblioteca</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!--<div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Cadastro autor 
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Cadastro editora</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+        </ul>
+      </div>-->
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+ 
+  {% block content %}
+  
+  {% endblock %}
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="{{ url_for('.static', filename='js/lib/jquery.slim.min.js') }}"></script>
+  <script src="{{ url_for('.static', filename='js/lib/jquery.js') }}"></script>
+  <script src="{{ url_for('.static', filename='js/lib/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ url_for('.static', filename='js/lib/dataTables.min.js') }}"></script>
+  <script src="{{ url_for('.static', filename='js/lib/jquery.mask.js') }}"></script>
+  
+  <!--My scripts-->
+  <script src=" {{ url_for('.static', filename='js/scripts/SendFormCadastro.js') }}"></script>
+  <script src=" {{ url_for('.static', filename='js/scripts/salva-autor.js') }}"></script>
+  <script src=" {{ url_for('.static', filename='js/scripts/mascaras.js') }}"></script>
+  <script src=" {{ url_for('.static', filename='js/scripts/relatorio.js') }}"></script>
+  <script src=" {{ url_for('.static', filename='js/scripts/esconde-div.js') }}"></script>
+  <script src=" {{ url_for('.static', filename='js/scripts/carrega-butao.js') }}"></script>
+  <script src=" {{ url_for('.static', filename='js/scripts/carrega-campos.js') }}"></script>
+  <script src=" {{ url_for('.static', filename='js/scripts/carrega-livros.js') }}"></script>
+  <script src=" {{ url_for('.static', filename='js/scripts/carrega-div-prorrogacao.js') }}"></script>
+  
+  <!--<script src=" {{ url_for('.static', filename='js/scripts/carrega-autores.js') }}"></script>
+  <script src=" {{ url_for('.static', filename='js/scripts/carrega-area.js') }}"></script>
+  <script src=" {{ url_for('.static', filename='js/scripts/carrega-editora.js') }}"></script>
+  <script src=" {{ url_for('.static', filename='js/scripts/carrega-livros.js') }}"></script>
+  <script src=" {{ url_for('.static', filename='js/scripts/carrega-genero.js') }}"></script>
+  <script src="{{ url_for('.static', filename='js/scripts/envia-formulario.js') }}"></script>-->
+  
+
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+input#dataInicio {
+    width: 177px;
+}
+input#dataFinal {
+    width: 177px;
+}
+input#suport {
+    width: 60px;
+}
+
+input#RefInicial {
+    width: 177px;
+}
+input#RefFinal {
+    width: 177px;
+}
+input#porcentagem {
+    width: 60px;
+}
+input#referencia {
+    width: 177px;
+}
+input#referenciaComparacao {
+    width: 177px;
+}
+input#score {
+    width: 60px;
+}
+
+select#DashReferencia {
+    width: 177px;
+}
+
