@@ -141,7 +141,7 @@ class Dados:
     def buscaColunasJson(self, tipoConsulta):
         column_name = ''
         if tipoConsulta == 101:
-            column_name = 'emprestimo'
+            column_name = 'VW_Emprestimo'
         elif tipoConsulta == 102:
             column_name = 'VW_DadosLivro'
 
@@ -157,14 +157,14 @@ class Dados:
 
     def buscaDadosJson(self, tipoConsulta):
         if tipoConsulta == 101:
-            sql = (f"""SELECT ID,
-                            livro_ID,
-                            DATE_FORMAT(data_emprestimo,'%d/%m/%Y') data_emprestimo,
-                            DATE_FORMAT(data_devolucao,'%d/%m/%Y') data_devolucao,
-                            codigo_supervisor,
-                            funcionario_matricula,
-                            status_devolucao
-                    FROM emprestimo""")
+            sql = (f"""SELECT `Codigo livro`,
+                                Titulo,
+                                `Data emprestimo`,
+                                `Data devolução`,
+                                `Codigo supervisor`,
+                                `Matricula funcionário`,
+                                `Status devolução`
+                        FROM VW_Emprestimo""")
             DFEmprestimo = read_sql (sql, Banco().connection())
             return DFEmprestimo
 

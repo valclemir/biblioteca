@@ -90,6 +90,7 @@ $((function(){
         else if ($(this).val() == 5){
             $("#DivLabelCodigoLivro").hide()
             $("#CadastroFuncionario").show() //5
+            
 
             $("#CadastroLivro").hide(); //4
             $("#CadastroAutor").hide() //1

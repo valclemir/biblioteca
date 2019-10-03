@@ -7,7 +7,6 @@ function carregaArea(acao){
     else if (acao == "6"){
         div = '#AreaIDEmprestimo'
     }
-    console.log('ACAOOOO', div)
     $.ajax({
         url: '/carrega-area',
         type: 'GET',

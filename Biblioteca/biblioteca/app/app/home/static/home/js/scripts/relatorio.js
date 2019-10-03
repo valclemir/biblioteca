@@ -58,7 +58,7 @@ $("#acao").on("change", function(){
                     listaJson.push(elemento)
                 })
                 
-                
+                console.log9
                 
                 redenrizaTabela(listaJson, 'TabelaDinamica', DivTabela)
                 $("#"+DivTabela).show()
@@ -80,7 +80,7 @@ $("#acao").on("change", function(){
                                 //console.log('<a href="'+recebeLista+'">')
                             });
     
-                            console.log(recebeLista)
+                           //console.log(recebeLista)
     
                             return recebeLista
                             
@@ -92,14 +92,15 @@ $("#acao").on("change", function(){
                         "scrollCollapse": true,
                         "scrollX": true,
                         "createdRow": function( row, data, dataIndex ) {
+                            console.log(data["Data Devolução"])
                             var today = new Date();
                             var dd = String(today.getDate()).padStart(2, '0');
                             var mm = String(today.getMonth() + 1).padStart(2, '0');
                             var yyyy = today.getFullYear();
                             today = dd + '/' + mm + '/' + yyyy;
-
+                            console.log(data["Data Devolução"], today, data["Data Devolução"] < today)
                             // Verifica se existe atraso na entrega do livro
-                            if ((data["data_devolucao"] < today) && data["status_devolucao"] == "Em aberto"){
+                            if ((data["Data Devolução"] < today) && (data["Data Devolução"] == "Em aberto" || data["Status devolução"] == "Prorrogado")){
                                 $( row ).css( "background-color", "red" );
                             }
                         },
