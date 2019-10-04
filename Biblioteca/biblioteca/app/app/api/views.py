@@ -4,6 +4,7 @@ from flask import Flask, render_template, request, \
 import re
 from app.api.models.Banco import Banco
 from app.api.models.Dados import Dados
+from app.login.models.usuarioLogin import loginUsuario
 
 
 api = Blueprint('api', __name__)
@@ -122,9 +123,18 @@ def carregaLivros(autor_id):
                 return jsonify(Dados().dataframeToJson(Dados().carregaLivro(int(autor_id))))
 
 
+@api.route('/carrega-usuarios', methods=["POST"])
+def carregaUsuario():
+        if request.method == "POST":
+                usuario = request.form.get("nomeUsuario")
+                senha = request.form.get("senha")
+                print(usuario, senha)
+                return jsonify(Dados().dataframeToJson(loginUsuario().login(usuario, senha)))
+
+
 @api.route('/busca-colunas-json/<tipoConsulta>', methods=["GET", "POST"])
 def buscaColunasJson(tipoConsulta):
-        if request.method == "POST":
+        if request.method == "POST" or request.method == "GET":
                 print('AQUIIIIIIIIIIIII', Dados().buscaDadosJson(int(tipoConsulta)))
                 return jsonify(Dados().dataframeToJson(Dados().buscaColunasJson(int(tipoConsulta))))
 

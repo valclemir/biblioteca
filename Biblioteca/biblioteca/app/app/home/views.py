@@ -1,16 +1,17 @@
 from flask import Flask, render_template, request, \
                 redirect, session, url_for, Blueprint
 from app.api.models.Dados import Dados
-#from app.app.api.models.Dados import Dados
+from app.login.views import login_required
 
-home = Blueprint('home', __name__, 
+principal = Blueprint('principal', __name__, 
                      template_folder="templates/home",  
                      static_folder='static/home', 
                      static_url_path='/static/home')
 
 
-@home.route("/home", methods=["GET"])
-def addBook():
+@principal.route("/home", methods=["GET"])
+@login_required
+def home():
         return render_template("home.html")
 
 

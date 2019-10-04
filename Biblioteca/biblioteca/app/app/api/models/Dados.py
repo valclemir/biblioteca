@@ -144,6 +144,12 @@ class Dados:
             column_name = 'VW_Emprestimo'
         elif tipoConsulta == 102:
             column_name = 'VW_DadosLivro'
+        elif tipoConsulta == 103:
+            column_name = 'funcionario'
+        elif tipoConsulta == 104:
+            column_name = 'autor'
+        elif tipoConsulta == 105:
+            column_name = 'editora'
 
         sql = (f"""SELECT COLUMN_NAME FROM information_schema.`COLUMNS`
                     WHERE TABLE_NAME = '{column_name}'
@@ -163,6 +169,7 @@ class Dados:
                                 `Data devolução`,
                                 `Codigo supervisor`,
                                 `Matricula funcionário`,
+                                `Nome funcionário`,
                                 `Status devolução`
                         FROM VW_Emprestimo""")
             DFEmprestimo = read_sql (sql, Banco().connection())
@@ -186,6 +193,31 @@ class Dados:
             return DFLivro
 
 
+        elif tipoConsulta == 103:
+            sql = (f"""SELECT matricula, 
+                            nome, 
+                            cpf, 
+                            email, 
+                            telefone 
+                    FROM funcionario;
+                    """)
+            DFFuncionarios = read_sql(sql, Banco().connection())
+            return DFFuncionarios
+
+
+        elif tipoConsulta == 104:
+            sql = (f"""SELECT id, nome FROM autor;""")
+            DFAutores = read_sql (sql, Banco().connection())
+            return DFAutores 
+
+
+        elif tipoConsulta == 105:
+            sql = (f"""SELECT id, nome FROM editora;""")
+            DFAutores = read_sql (sql, Banco().connection())
+            return DFAutores 
+
+
+
     def dataframeToJson(self, dataframe):
         dados = [
                                 dict([
@@ -195,3 +227,16 @@ class Dados:
                                 for row in dataframe.values
                 ]
         return dados    
+
+
+
+    def checaUsuario (self, login, senha):
+        sql = (f"""SELECT senha FROM supervisor  
+                    WHERE login = '{login}' AND senha = '{senha}' """)
+
+        DFChecaUsuario = read_sql(sql, Banco().connection())
+        if not DFChecaUsuario.empty == True:
+            return DFChecaUsuario
+        else:
+            return ''
+        

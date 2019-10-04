@@ -52,6 +52,7 @@ $((function(){
                
 
         if($(this).val() == 2){
+            $("#RelatorioFuncionarios").hide()
             $("#DivLabelCodigoLivro").hide()
             $("#CadastroEditora").show(); //2
 
@@ -62,8 +63,13 @@ $((function(){
             $("#CadastroEmprestimo").hide() //6
             $("#RelatorioEmprestimos").hide();//101
             $("#RelatorioLivrosExistentes").hide();//102
+            $("#RelatorioAutores").empty()
+            $("#RelatorioAutores").hide()
+            $("#RelatorioEditoras").empty() 
+            $("#RelatorioEditoras").hide() 
         }
         else if ($(this).val() == 3){
+            $("#RelatorioFuncionarios").hide()
             $("#DivLabelCodigoLivro").hide()
             $("#CadastroArea").show(); //3
 
@@ -74,8 +80,13 @@ $((function(){
             $("#CadastroEmprestimo").hide() //6
             $("#RelatorioEmprestimos").hide();//101
             $("#RelatorioLivrosExistentes").hide();//102
+            $("#RelatorioAutores").empty()
+            $("#RelatorioAutores").hide()
+            $("#RelatorioEditoras").empty() 
+            $("#RelatorioEditoras").hide() 
         }
         else if ($(this).val() == 4){
+            $("#RelatorioFuncionarios").hide()
             $("#DivLabelCodigoLivro").hide()
             $("#CadastroLivro").show(); //4
 
@@ -86,8 +97,13 @@ $((function(){
             $("#CadastroEmprestimo").hide() //6
             $("#RelatorioEmprestimos").hide();//101
             $("#RelatorioLivrosExistentes").hide();//102
+            $("#RelatorioAutores").empty()
+            $("#RelatorioAutores").hide()
+            $("#RelatorioEditoras").empty() 
+            $("#RelatorioEditoras").hide() 
         }
         else if ($(this).val() == 5){
+            $("#RelatorioFuncionarios").hide()
             $("#DivLabelCodigoLivro").hide()
             $("#CadastroFuncionario").show() //5
             
@@ -99,8 +115,13 @@ $((function(){
             $("#CadastroEmprestimo").hide() //6
             $("#RelatorioEmprestimos").hide();//101
             $("#RelatorioLivrosExistentes").hide();//102
+            $("#RelatorioAutores").empty()
+            $("#RelatorioAutores").hide()
+            $("#RelatorioEditoras").empty() 
+            $("#RelatorioEditoras").hide() 
         }
         else if ($(this).val() == 6){
+            $("#RelatorioFuncionarios").hide()
             $("#DivLabelCodigoLivro").hide()
             $("#CadastroEmprestimo").show() //6
 
@@ -111,24 +132,71 @@ $((function(){
             $("#CadastroEditora").hide(); //2
             $("#RelatorioEmprestimos").hide();//101
             $("#RelatorioLivrosExistentes").hide();//102
+            $("#RelatorioAutores").empty()
+            $("#RelatorioAutores").hide()
+            $("#RelatorioEditoras").empty() 
+            $("#RelatorioEditoras").hide() 
         }
-        else if ($(this).val() == 101){
-            $("#DivLabelCodigoLivro").hide()
+        if ($(this).val() == "101"){
+            DivTabela = 'RelatorioEmprestimos'
+            $("#RelatorioLivrosExistentes").empty()
+            $("#RelatorioLivrosExistentes").hide()
+            $("#RelatorioFuncionarios").empty()
+            $("#RelatorioFuncionarios").hide()
+            $("#CadastroAutor").hide() //1
+            $("#CadastroEditora").hide(); //2
+            $("#CadastroArea").hide(); //3
+            $("#CadastroLivro").hide(); //4
+            $("#CadastroFuncionario").hide() //5
+            $("#CadastroEmprestimo").hide() //6
+            $("#RelatorioFuncionarios").hide()
+            $("#RelatorioAutores").empty()
+            $("#RelatorioAutores").hide()
+            $("#RelatorioEditoras").empty() 
+            $("#RelatorioEditoras").hide() 
             
-
-            $("#CadastroAutor").hide() //1
-            $("#CadastroEditora").hide(); //2
-            $("#CadastroArea").hide(); //3
-            $("#CadastroLivro").hide(); //4
-            $("#CadastroFuncionario").hide() //5
-            $("#CadastroEmprestimo").hide() //6
-            $("#RelatorioEmprestimos").hide();//101
-            $("#RelatorioLivrosExistentes").hide();//102
-        }
-        else if ($(this).val() == 102){
-            $("#DivLabelCodigoLivro").hide()
-            $("#RelatorioEmprestimos").empty()
+    
             $("#RelatorioEmprestimos").show();//101
+    
+          
+    
+            //$("#'RelatorioLivrosExistentes'").empty()
+            //$("#'RelatorioLivrosExistentes'").hide()
+        }
+        else if ($(this).val() == "102") {
+            DivTabela = 'RelatorioLivrosExistentes'
+            $("#RelatorioEmprestimos").empty()
+            $("#RelatorioEmprestimos").hide()
+            $("#DivLabelCodigoLivro").hide() 
+            $("#RelatorioFuncionarios").empty()
+            $("#RelatorioFuncionarios").hide()
+            $("#RelatorioAutores").empty()
+            $("#RelatorioAutores").hide()
+            $("#RelatorioEditoras").empty() 
+            $("#RelatorioEditoras").hide() 
+    
+            $("#CadastroAutor").hide() //1
+            $("#CadastroEditora").hide(); //2
+            $("#CadastroArea").hide(); //3
+            $("#CadastroLivro").hide(); //4
+            $("#CadastroFuncionario").hide() //5
+            $("#CadastroEmprestimo").hide() //6
+    
+            $("#RelatorioLivrosExistentes").show()
+    
+            
+        }
+        else if ($(this).val() == "103"){
+            DivTabela = 'RelatorioFuncionarios'
+            $("#RelatorioEmprestimos").empty()
+            $("#RelatorioEmprestimos").hide()
+            $("#DivLabelCodigoLivro").hide() 
+            $("#RelatorioLivrosExistentes").empty()
+            $("#RelatorioLivrosExistentes").hide() 
+            $("#RelatorioAutores").empty()
+            $("#RelatorioAutores").hide()
+            $("#RelatorioEditoras").empty() 
+            $("#RelatorioEditoras").hide() 
 
             $("#CadastroAutor").hide() //1
             $("#CadastroEditora").hide(); //2
@@ -136,8 +204,16 @@ $((function(){
             $("#CadastroLivro").hide(); //4
             $("#CadastroFuncionario").hide() //5
             $("#CadastroEmprestimo").hide() //6
-            $("#RelatorioLivrosExistentes").hide();//102
+    
+            $("#RelatorioFuncionarios").show()
         }
+        /*else if ($(this).val() == "104"){
+            
+        }
+        else if ($(this).val() == "105"){
+            
+            
+        }*/
         else if ($(this).val() == 1){
             $("#DivLabelCodigoLivro").hide()
             $("#CadastroAutor").show() //1
@@ -149,6 +225,7 @@ $((function(){
             $("#CadastroEmprestimo").hide() //6
             $("#RelatorioEmprestimos").hide();//101
             $("#RelatorioLivrosExistentes").hide();//102
+            $("#RelatorioFuncionarios").hide() //103
         }
     })
 }))
