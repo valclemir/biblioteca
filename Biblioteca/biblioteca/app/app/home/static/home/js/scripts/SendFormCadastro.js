@@ -4,7 +4,7 @@ function SalvaAutor(){
     var nomeAutor = $('input[name="autor"]').val()
     if (nomeAutor == ''){
         $("#autor").focus()
-        return 
+        return 1 
     }
     $.ajax({
         url: "/salva-autor-banco",
@@ -23,7 +23,7 @@ function SalvaEditora(){
     var nomeEditora = $('input[name="editora"]').val()
     if (nomeEditora == ''){
         $("#editora").focus()
-        return 
+        return 1 
     }
     $.ajax({
         url: "/salva-editora-banco",
@@ -43,7 +43,7 @@ function SalvaArea(){
     var nomeArea = $('input[name="area"]').val()
     if (nomeArea == ''){
         $("#area").focus()
-        return 
+        return 1 
     }
     $.ajax({
         url: "/salva-area-banco",
@@ -76,47 +76,47 @@ function SalvaLivro(){
     
     if (tituloLivro == ''){
         $("#titulo").focus() 
-        return
+        return 1
     }
     else if(AutorIDLivro == ''){
         $("#AutorID").focus()
-        return
+        return 1
     }
     else if(AreaIDLivro == ''){
         $("#AreaID").focus()
-        return
+        return 1
     }
     else if(EdicaoLivro == ''){
         $("#Edicao").focus()
-        return
+        return 1
     }
     else if(EditoraID == ''){
         $("#EditoraID").focus()
-        return
+        return 1
     }
     else if(Quantidade == ''){
         $("#Quantidade").focus()
-        return
+        return 1
     }
     else if(Paginas == ''){
         $("#Paginas").focus()
-        return
+        return 1
     }
     else if(Armario == ''){
         $("#Armario").focus()
-        return
+        return 1
     }
     else if(Ano == ''){
         $("#Ano").focus()
-        return
+        return 1
     }
     else if(Prateleira == ''){
         $("#Prateleira").focus()
-        return
+        return 1
     }
     else if(ISBN == ''){
         $("#ISBN").focus()
-        return
+        return 1
     }
     
     $.ajax({
@@ -153,23 +153,23 @@ function SalvaFuncionario(){
     console.log(matricula)
     if (matricula == ''){
         $("#matricula").focus()
-        return 
+        return 1 
     }
     else if (nomeFuncionario == ''){
         $("#nomeFuncionario").focus()
-        return 
+        return 1 
     }
     else if (CpfFuncionario == ''){
         $("#CpfFuncionario").focus()
-        return 
+        return 1 
     }
     else if (EmailFuncionario == ''){
         $("#EmailFuncionario").focus()
-        return 
+        return 1 
     }
     else if (TelefoneFuncionario == ''){
         $("#TelefoneFuncionario").focus()
-        return 
+        return 1 
     }
 
     $.ajax({
@@ -201,27 +201,27 @@ function SalvaEmprestimo(){
     console.log('aqefwfwef', livro_id === null)
     if (livro_id == '' || livro_id === null){
         $("#LivroIDEmprestimo").focus() 
-        return 
+        return 1 
     }
     else if (dataEmprestimo == ''){
         $("#DataEmprestimo").focus() 
-        return 
+        return 1 
     }
     else if (dataDevolucao == ''){
         $("#DataDevolucao").focus() 
-        return 
+        return 1 
     }
     else if (CodigoSupervisor == ''){
         $("#SupervisorDevolucao").focus() 
-        return 
+        return 1 
     }
     else if (FuncionarioMatricula == ''){
         $("#FuncionarioMatriculaDevolucao").focus() 
-        return 
+        return 1 
     }
     else if (StatusDevolucao == ''){
         $("#StatusDevolucao").focus() 
-        return 
+        return 1 
     }
 
     $.ajax({
@@ -278,8 +278,11 @@ function SendFormCadastro(){
         SalvaArea() // Cadastra area 
     }
     else if (acao == "4"){
-        SalvaLivro() // Cadastra livro
-        setTimeout("window.location.href = '/home'", 2000);
+        if (SalvaLivro() == 1){ // Cadastra livro
+            return 
+        }
+        //setTimeout("window.location.href = '/home'", 2000);
+        
         
     }
     else if (acao == "5"){

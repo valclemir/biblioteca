@@ -3,7 +3,8 @@
 #from app.api.models.classes import principal
 from app.login.models.usuarioLogin import loginUsuario
 from flask_wtf.csrf import CSRFProtect
-from functools import wraps
+#from functools import wraps
+import functools
 import requests 
 import json
 
@@ -16,7 +17,8 @@ loginUser = Blueprint('loginUser',
 
 @loginUser.route('/')
 def home():
-        if session['logged_in'] == False:
+        print(session)
+        if 'logged_in' not in session:
                 return render_template('login.html')     
         else:
                 return redirect(url_for('principal.home'))
@@ -32,7 +34,7 @@ def login():
         if not LoginExiste.empty == True: #Login existe
                 session['logged_in'] = True
                 session['senha'] = LoginExiste['senha'].values[0]
-                print('SESSION', session['logged_in'], session)
+                print('SESSION AQUIIIIIIIIIIIIII', session['logged_in'], session)
                 return redirect(url_for('principal.home'))
                 
         return home()
@@ -40,23 +42,17 @@ def login():
 
 @loginUser.route("/logout")
 def logout():
-        print('SESSION', session)
-        session['logged_in'] = False
-        session['senha'] = ''
+        session.clear()
         return home()
 
 
-def login_required(f):
-    @wraps(f)
-    def wrap(*args, **kwargs):
-        print('WRAPPPPPPPPPPPPPPPPPPPPPPP')
-        if 'logged_in' not in session:
-            print('AQUI LOGNNNNNNNNNNN')
+def login_required(view):
+    @functools.wraps(view)
+    def wrapped_view(**kwargs):        
+        if not 'logged_in' in session.keys():
             return redirect(url_for('loginUser.home'))
-
-        return f(*args, **kwargs)
-
-    return wrap
+        return view(**kwargs)
+    return wrapped_view
 		
 
 @loginUser.route("/recuperar-senha", methods=["GET"])
