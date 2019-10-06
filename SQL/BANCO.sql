@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `autor` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
--- Copiando dados para a tabela biblioteca.autor: ~32 rows (aproximadamente)
+-- Copiando dados para a tabela biblioteca.autor: ~36 rows (aproximadamente)
 /*!40000 ALTER TABLE `autor` DISABLE KEYS */;
 INSERT INTO `autor` (`id`, `nome`) VALUES
 	(1, 'Mauricio Aniche'),
@@ -127,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `emprestimo` (
   CONSTRAINT `fk_emprestimo_livro1` FOREIGN KEY (`livro_ID`) REFERENCES `livro` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
--- Copiando dados para a tabela biblioteca.emprestimo: ~4 rows (aproximadamente)
+-- Copiando dados para a tabela biblioteca.emprestimo: ~5 rows (aproximadamente)
 /*!40000 ALTER TABLE `emprestimo` DISABLE KEYS */;
 INSERT INTO `emprestimo` (`ID`, `livro_ID`, `data_emprestimo`, `data_devolucao`, `codigo_supervisor`, `funcionario_matricula`, `status_devolucao`) VALUES
 	(32, 22, '2019-10-02 00:00:00', '2019-10-03 00:00:00', 1604, 12345, 'Em aberto'),
@@ -175,9 +175,9 @@ CREATE TABLE IF NOT EXISTS `livro` (
   CONSTRAINT `fk_livro_area1` FOREIGN KEY (`area_id`) REFERENCES `area` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_livro_autor1` FOREIGN KEY (`autor_id`) REFERENCES `autor` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_livro_editora1` FOREIGN KEY (`editora_id`) REFERENCES `editora` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
--- Copiando dados para a tabela biblioteca.livro: ~34 rows (aproximadamente)
+-- Copiando dados para a tabela biblioteca.livro: ~36 rows (aproximadamente)
 /*!40000 ALTER TABLE `livro` DISABLE KEYS */;
 INSERT INTO `livro` (`ID`, `titulo`, `autor_id`, `area_id`, `edicao`, `editora_id`, `quantidade`, `paginas`, `armario`, `ano`, `prateleira`, `isbn`) VALUES
 	(3, 'OrientaÃ§Ã£o a Objetos e SOLID para Ninjas', 1, 3, '3Âª', 1, 1, 166, 'II', 2015, '1', '324965782-0'),
@@ -214,7 +214,8 @@ INSERT INTO `livro` (`ID`, `titulo`, `autor_id`, `area_id`, `edicao`, `editora_i
 	(35, 'Codigo livre', 6, 6, '2', 1, 45, 222, 'IV', 2019, '5', '5555555555-5'),
 	(36, 'Teste livro', 4, 4, '5', 1, 30, 300, 'IV', 2019, '5', '5555555555-5'),
 	(37, 'Construindo código do zero ', 2, 1, '2', 1, 20, 500, 'IV', 2019, '5', '5555555555-5'),
-	(38, 'Teste livro', 14, 14, '3', 1, 34, 3, 'V', 2019, '14', '5555555555-5');
+	(38, 'Teste livro', 14, 14, '3', 1, 34, 3, 'V', 2019, '14', '5555555555-5'),
+	(39, 'A volta dos que não foram', 1, 5, '2', 1, 34, 200, 'II', 2019, '3', '5558888888-8');
 /*!40000 ALTER TABLE `livro` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela biblioteca.reserva
@@ -243,7 +244,7 @@ CREATE TABLE IF NOT EXISTS `supervisor` (
   PRIMARY KEY (`codigo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
--- Copiando dados para a tabela biblioteca.supervisor: ~1 rows (aproximadamente)
+-- Copiando dados para a tabela biblioteca.supervisor: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `supervisor` DISABLE KEYS */;
 INSERT INTO `supervisor` (`login`, `senha`, `codigo`) VALUES
 	('admin', 'admin', 1604);
