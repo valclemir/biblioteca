@@ -1,12 +1,21 @@
 import pymysql 
+from json import load 
 
 class Banco:
 
     def __init__(self):
-        self.host ='localhost'
-        self.user = 'root'
-        self.passwd = 'q1w2e3r4'
-        self.database = 'biblioteca'
+        with open('config.json', 'r') as json_data:
+            dadosjson = load(json_data)
+            for dado in dadosjson['servidor_banco']:
+                host = dado['host']     
+                username = dado['username']
+                password = dado['password']
+                db = dado['db']
+                
+        self.host =host
+        self.user = username
+        self.passwd = password
+        self.database = db
 
 
     def connection(self):
