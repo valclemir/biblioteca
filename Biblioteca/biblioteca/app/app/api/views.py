@@ -5,6 +5,7 @@ import re
 from app.api.models.Banco import Banco
 from app.api.models.Dados import Dados
 from app.login.models.usuarioLogin import loginUsuario
+from app.login.views import login_required
 
 
 api = Blueprint('api', __name__)
@@ -22,7 +23,6 @@ def salvaAutorBanco():
 def salvaEditorabanco():
         if request.method == "POST":
                 nomeEditora = request.form.get('nomeEditora')
-                print(nomeEditora)
                 Dados().cadastraEditora(nomeEditora)
         return '1'
 
@@ -86,7 +86,6 @@ def salvaBaixaLivroBanco():
                 codigoLivro = request.form.get('codigoLivro')
                 statusPedido = request.form.get('statusPedido')
                 dataProrrogacao = request.form.get('dataProrrogacao')
-                print('STATUS', statusPedido)
                 Dados().cadastraBaixaLivro(codigoLivro, statusPedido, dataProrrogacao) 
 
         return '1'
@@ -135,12 +134,10 @@ def carregaUsuario():
 @api.route('/busca-colunas-json/<tipoConsulta>', methods=["GET", "POST"])
 def buscaColunasJson(tipoConsulta):
         if request.method == "POST" or request.method == "GET":
-                print('AQUIIIIIIIIIIIII', Dados().buscaDadosJson(int(tipoConsulta)))
                 return jsonify(Dados().dataframeToJson(Dados().buscaColunasJson(int(tipoConsulta))))
 
 
 @api.route('/busca-dados-json/<tipoConsulta>', methods=["GET", "POST"])
 def buscaDadosJson(tipoConsulta):
         if request.method == "POST" or request.method == "GET":
-                print('AQUIIIIIIIIIIIII', Dados().buscaDadosJson(int(tipoConsulta)))
                 return jsonify(Dados().dataframeToJson(Dados().buscaDadosJson(int(tipoConsulta))))

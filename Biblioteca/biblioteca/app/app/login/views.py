@@ -1,9 +1,7 @@
 ﻿from flask import Flask, render_template, request, \
                  redirect, session, url_for, Blueprint, flash
-#from app.api.models.classes import principal
 from app.login.models.usuarioLogin import loginUsuario
 from flask_wtf.csrf import CSRFProtect
-#from functools import wraps
 import functools
 import requests 
 import json
@@ -17,8 +15,7 @@ loginUser = Blueprint('loginUser',
 
 @loginUser.route('/')
 def home():
-        print(session)
-        if 'logged_in' not in session:
+        if not session.get('logged_in'):
                 return render_template('login.html')     
         else:
                 return redirect(url_for('principal.home'))
@@ -34,7 +31,6 @@ def login():
         if not LoginExiste.empty == True: #Login existe
                 session['logged_in'] = True
                 session['senha'] = LoginExiste['senha'].values[0]
-                print('SESSION AQUIIIIIIIIIIIIII', session['logged_in'], session)
                 return redirect(url_for('principal.home'))
                 
         return home()
@@ -42,18 +38,20 @@ def login():
 
 @loginUser.route("/logout")
 def logout():
-        session.clear()
+        #session.clear()
+        session['logged_in'] = False
+        session['senha'] = ''
         return home()
 
 
 def login_required(view):
     @functools.wraps(view)
     def wrapped_view(**kwargs):        
-        if not 'logged_in' in session.keys():
+        if not session.get('logged_in'):
             return redirect(url_for('loginUser.home'))
         return view(**kwargs)
     return wrapped_view
-		
+	
 
 @loginUser.route("/recuperar-senha", methods=["GET"])
 def resetSenha():
