@@ -20,6 +20,7 @@ function carregaArea(acao){
                     .attr("value", i.area).text(i.area));
             });
             $("#AreaID").selectpicker('refresh');
+            $("#AreaIDEmprestimo").selectpicker('refresh');
         }
     })
 }

@@ -13,6 +13,7 @@ $("#AreaIDEmprestimo").on("change", function(){
                     $("<option ></option>")
                     .attr("value", i.livros).text(i.livros));
             });
+            $("#LivroIDEmprestimo").selectpicker('refresh')
         }
     })
 })

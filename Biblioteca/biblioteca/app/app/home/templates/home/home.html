@@ -14,13 +14,13 @@
                 <option value="2">2: Cadastro editora</option> 
                 <option value="3">3: Cadastro genêro</option>  
                 <option value="4">4: Cadastro livro</option>  
-                <option value="5">5: Cadastro funcionário</option> 
+                <option value="5">5: Cadastro usuário</option> 
                 <option value="6">6: Cadastro emprestimo</option>
               </optgroup>
               <optgroup label="Relatorio">
                 <option value="101">1: Listar  emprestimos</option>         
                 <option value="102">2: Listar  livros</option>   
-                <option value="103">3: Listar  funcionários</option>
+                <option value="103">3: Listar  usuários</option>
                 <option value="104">4: Listar  autores</option>
                 <option value="105">5: Listar  editoras</option>
                
@@ -92,7 +92,7 @@
             <label id="labelNomeFuncionario">Nome usuário :</label>
             <input type="text" id="nomeFuncionario" name="nomeFuncionario" class="form-control">
             <br>
-            <label id="labelCpfFuncionario">CPF funcionário :</label>
+            <label id="labelCpfFuncionario">CPF usuário :</label>
             <input type="text" id="CpfFuncionario" name="CpfFuncionario" class="form-control" maxlength="11">
             <br>
             <label id="labelEmailFuncionario">E-mail :</label>
@@ -103,15 +103,17 @@
             <br>
           </div>
           <div id="CadastroEmprestimo">
-              <label id="labelAreaIDEmprestimo">Area :</label>
-              <select class="form-control" name="AreaIDEmprestimo" id="AreaIDEmprestimo" style="max-width:100%">
+              <label id="labelAreaIDEmprestimo">Area :</label><br>
+              <select class="selectpicker" data-width="40%" title="Gênero" data-live-search="true" name="AreaIDEmprestimo" id="AreaIDEmprestimo" style="max-width:100%">
                     <option value="Selecione..." SELECTED>Selecione...</option>
-                </select>  
+                </select> 
               <br>
-              <label id="labelLivroID">Livros :</label>
-              <select class="form-control" name="LivroIDEmprestimo" id="LivroIDEmprestimo" style="max-width:100%">
+              <br>
+              <label id="labelLivroID">Livros :</label><br>
+              <select class="selectpicker" data-width="40%" title="Editora" data-live-search="true" name="LivroIDEmprestimo" id="LivroIDEmprestimo" style="max-width:100%">
                     <option value="Selecione..." SELECTED>Selecione...</option>
-                </select>  
+                </select> 
+              <br>
               <br>
               <label id="labelDataEmprestimo">Data de emprestimo :</label>
               <input type="date" id="DataEmprestimo" name="DataEmprestimo" class="form-control">
