@@ -2,13 +2,14 @@ from pandas import read_sql
 import json, re
 from app.api.models.Banco import Banco
 
+
+
 class Dados:
 		
     
     def cadastroAutor(self, nomeAutor):
         try:
             
-            print('AQUIIIIIIIIIII', Base.classes.keys())
             con = Banco().connection()
             sql = (f"""INSERT INTO autor(nome) VALUES ('{nomeAutor}') """)
 

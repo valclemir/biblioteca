@@ -19,6 +19,7 @@ function carregaArea(acao){
                     $("<option ></option>")
                     .attr("value", i.area).text(i.area));
             });
+            $("#AreaID").selectpicker('refresh');
         }
     })
 }
@@ -37,6 +38,7 @@ function carregaAutores(){
                     $("<option ></option>")
                     .attr("value", i.nome).text(i.nome));
             });
+            $("#AutorID").selectpicker('refresh');
         }
     })
 }
@@ -54,6 +56,7 @@ function carregaEditora(){
                     $("<option ></option>")
                     .attr("value", i.editora).text(i.editora));
             });
+            $("#EditoraID").selectpicker("refresh");
         }
     })
 }

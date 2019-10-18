@@ -50,7 +50,7 @@ function SalvaArea(){
         type: "POST",
         data: {'nomeArea':nomeArea},
         success: function (){
-            alert('Area cadastrado!')
+            alert('Gênero cadastrado!')
         },
         error: function(request, status, erro){
             alert (erro)
