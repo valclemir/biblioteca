@@ -1,6 +1,6 @@
--- --------------------------------------------------------
+﻿-- --------------------------------------------------------
 -- Servidor:                     127.0.0.1
--- Versão do servidor:           10.4.8-MariaDB - mariadb.org binary distribution
+-- Versão do servidor:           8.0.11 - MySQL Community Server - GPL
 -- OS do Servidor:               Win64
 -- HeidiSQL Versão:              10.2.0.5599
 -- --------------------------------------------------------
@@ -19,7 +19,7 @@ USE `biblioteca`;
 -- Copiando estrutura para tabela biblioteca.area
 CREATE TABLE IF NOT EXISTS `area` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(30) CHARACTER SET utf8 NOT NULL,
+  `nome` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
@@ -48,7 +48,7 @@ INSERT INTO `area` (`id`, `nome`) VALUES
 -- Copiando estrutura para tabela biblioteca.autor
 CREATE TABLE IF NOT EXISTS `autor` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `nome` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
@@ -96,7 +96,7 @@ INSERT INTO `autor` (`id`, `nome`) VALUES
 -- Copiando estrutura para tabela biblioteca.editora
 CREATE TABLE IF NOT EXISTS `editora` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(30) CHARACTER SET utf8 NOT NULL,
+  `nome` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
@@ -117,20 +117,20 @@ CREATE TABLE IF NOT EXISTS `emprestimo` (
   `data_devolucao` datetime NOT NULL,
   `codigo_supervisor` int(11) NOT NULL,
   `funcionario_matricula` int(11) NOT NULL,
-  `status_devolucao` varchar(50) COLLATE latin1_spanish_ci NOT NULL DEFAULT '',
+  `status_devolucao` varchar(50) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`ID`),
   KEY `fk_emprestimo_livro1_idx` (`livro_ID`),
   KEY `fk_emprestimo_funcionario1_idx` (`funcionario_matricula`),
   KEY `fk_codigo_supervisor` (`codigo_supervisor`),
   CONSTRAINT `fk_codigo_supervisor` FOREIGN KEY (`codigo_supervisor`) REFERENCES `supervisor` (`codigo`),
-  CONSTRAINT `fk_emprestimo_funcionario1` FOREIGN KEY (`funcionario_matricula`) REFERENCES `funcionario` (`matricula`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_emprestimo_livro1` FOREIGN KEY (`livro_ID`) REFERENCES `livro` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_emprestimo_funcionario1` FOREIGN KEY (`funcionario_matricula`) REFERENCES `funcionario` (`matricula`),
+  CONSTRAINT `fk_emprestimo_livro1` FOREIGN KEY (`livro_ID`) REFERENCES `livro` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 -- Copiando dados para a tabela biblioteca.emprestimo: ~5 rows (aproximadamente)
 /*!40000 ALTER TABLE `emprestimo` DISABLE KEYS */;
 INSERT INTO `emprestimo` (`ID`, `livro_ID`, `data_emprestimo`, `data_devolucao`, `codigo_supervisor`, `funcionario_matricula`, `status_devolucao`) VALUES
-	(32, 22, '2019-10-02 00:00:00', '2019-10-03 00:00:00', 1604, 12345, 'Em aberto'),
+	(32, 22, '2019-10-02 00:00:00', '2019-12-15 20:38:04', 1604, 12345, 'Devolvido'),
 	(33, 30, '2019-10-01 00:00:00', '2019-05-01 00:00:00', 1604, 12345, 'Prorrogado'),
 	(34, 27, '2019-10-01 00:00:00', '2018-05-01 00:00:00', 1604, 12345, 'Devolvido'),
 	(35, 37, '2018-05-01 00:00:00', '2019-10-02 00:00:00', 1604, 2222, 'Em aberto'),
@@ -140,10 +140,10 @@ INSERT INTO `emprestimo` (`ID`, `livro_ID`, `data_emprestimo`, `data_devolucao`,
 -- Copiando estrutura para tabela biblioteca.funcionario
 CREATE TABLE IF NOT EXISTS `funcionario` (
   `matricula` int(11) NOT NULL,
-  `nome` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `cpf` varchar(14) CHARACTER SET utf8 DEFAULT NULL,
-  `email` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `telefone` varchar(45) CHARACTER SET utf8 DEFAULT NULL,
+  `nome` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `cpf` varchar(14) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `telefone` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   PRIMARY KEY (`matricula`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
@@ -157,24 +157,24 @@ INSERT INTO `funcionario` (`matricula`, `nome`, `cpf`, `email`, `telefone`) VALU
 -- Copiando estrutura para tabela biblioteca.livro
 CREATE TABLE IF NOT EXISTS `livro` (
   `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `titulo` varchar(60) CHARACTER SET utf8 NOT NULL,
+  `titulo` varchar(60) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `autor_id` int(11) NOT NULL,
   `area_id` int(11) NOT NULL,
-  `edicao` varchar(45) CHARACTER SET utf8 DEFAULT NULL,
+  `edicao` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `editora_id` int(11) NOT NULL,
   `quantidade` int(11) NOT NULL,
   `paginas` int(11) NOT NULL,
-  `armario` varchar(30) CHARACTER SET utf8 DEFAULT NULL,
+  `armario` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `ano` int(11) NOT NULL,
-  `prateleira` varchar(30) CHARACTER SET utf8 DEFAULT NULL,
-  `isbn` varchar(45) CHARACTER SET utf8 NOT NULL,
+  `prateleira` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `isbn` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`ID`),
   KEY `fk_livro_autor1_idx` (`autor_id`),
   KEY `fk_livro_area1_idx` (`area_id`),
   KEY `fk_livro_editora1_idx` (`editora_id`),
-  CONSTRAINT `fk_livro_area1` FOREIGN KEY (`area_id`) REFERENCES `area` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_livro_autor1` FOREIGN KEY (`autor_id`) REFERENCES `autor` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_livro_editora1` FOREIGN KEY (`editora_id`) REFERENCES `editora` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_livro_area1` FOREIGN KEY (`area_id`) REFERENCES `area` (`id`),
+  CONSTRAINT `fk_livro_autor1` FOREIGN KEY (`autor_id`) REFERENCES `autor` (`id`),
+  CONSTRAINT `fk_livro_editora1` FOREIGN KEY (`editora_id`) REFERENCES `editora` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 -- Copiando dados para a tabela biblioteca.livro: ~36 rows (aproximadamente)
@@ -228,8 +228,8 @@ CREATE TABLE IF NOT EXISTS `reserva` (
   PRIMARY KEY (`ID`),
   KEY `fk_reserva_livro_idx` (`livro_ID`),
   KEY `fk_reserva_funcionario1_idx` (`funcionario_matricula`),
-  CONSTRAINT `fk_reserva_funcionario1` FOREIGN KEY (`funcionario_matricula`) REFERENCES `funcionario` (`matricula`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_reserva_livro` FOREIGN KEY (`livro_ID`) REFERENCES `livro` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_reserva_funcionario1` FOREIGN KEY (`funcionario_matricula`) REFERENCES `funcionario` (`matricula`),
+  CONSTRAINT `fk_reserva_livro` FOREIGN KEY (`livro_ID`) REFERENCES `livro` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 -- Copiando dados para a tabela biblioteca.reserva: ~0 rows (aproximadamente)
@@ -238,8 +238,8 @@ CREATE TABLE IF NOT EXISTS `reserva` (
 
 -- Copiando estrutura para tabela biblioteca.supervisor
 CREATE TABLE IF NOT EXISTS `supervisor` (
-  `login` varchar(45) CHARACTER SET utf8 NOT NULL,
-  `senha` varchar(45) CHARACTER SET utf8 NOT NULL,
+  `login` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `senha` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `codigo` int(11) NOT NULL,
   PRIMARY KEY (`codigo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
@@ -271,53 +271,23 @@ CREATE TABLE `vw_dadoslivro` (
 CREATE TABLE `vw_emprestimo` (
 	`Codigo livro` INT(10) UNSIGNED NOT NULL,
 	`Titulo` VARCHAR(60) NOT NULL COLLATE 'utf8_general_ci',
-	`Data emprestimo` VARCHAR(10) NULL COLLATE 'utf8mb4_general_ci',
-	`Data Devolução` VARCHAR(10) NULL COLLATE 'utf8mb4_general_ci',
+	`Data emprestimo` VARCHAR(10) NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`Data Devolução` VARCHAR(10) NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`Codigo supervisor` INT(11) NOT NULL,
-	`Matricula funcionário` INT(11) NOT NULL,
-	`Nome funcionário` VARCHAR(255) NOT NULL COLLATE 'utf8_general_ci',
+	`Matricula usuário` INT(11) NOT NULL,
+	`Nome usuário` VARCHAR(255) NOT NULL COLLATE 'utf8_general_ci',
 	`Status devolução` VARCHAR(50) NOT NULL COLLATE 'latin1_spanish_ci'
 ) ENGINE=MyISAM;
 
 -- Copiando estrutura para view biblioteca.vw_dadoslivro
 -- Removendo tabela temporária e criando a estrutura VIEW final
 DROP TABLE IF EXISTS `vw_dadoslivro`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_dadoslivro` AS SELECT T1.titulo,  
-       T2.nome `Nome autor`,
-		 T3.nome `Gênero`,
-		 T1.edicao,
-		 T4.nome `Nome editora`,
-		 T1.quantidade,
-       T1.paginas,
-       T1.armario,
-       T1.ano,
-       T1.prateleira,
-       T1.isbn
-FROM livro T1
-INNER JOIN Autor T2
-	ON (T1.autor_id = T2.id)
-INNER JOIN AREA T3
-	ON (T1.area_id = T3.id)
-INNER JOIN Editora T4
-	ON (T1.editora_id = T4.id) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_dadoslivro` AS select `t1`.`titulo` AS `titulo`,`t2`.`nome` AS `Nome autor`,`t3`.`nome` AS `Gênero`,`t1`.`edicao` AS `edicao`,`t4`.`nome` AS `Nome editora`,`t1`.`quantidade` AS `quantidade`,`t1`.`paginas` AS `paginas`,`t1`.`armario` AS `armario`,`t1`.`ano` AS `ano`,`t1`.`prateleira` AS `prateleira`,`t1`.`isbn` AS `isbn` from (((`livro` `t1` join `autor` `t2` on((`t1`.`autor_id` = `t2`.`id`))) join `area` `t3` on((`t1`.`area_id` = `t3`.`id`))) join `editora` `t4` on((`t1`.`editora_id` = `t4`.`id`)));
 
 -- Copiando estrutura para view biblioteca.vw_emprestimo
 -- Removendo tabela temporária e criando a estrutura VIEW final
 DROP TABLE IF EXISTS `vw_emprestimo`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_emprestimo` AS SELECT 							 
-                            livro_ID `Codigo livro`,
-                            T2.titulo Titulo,
-                            DATE_FORMAT(data_emprestimo,'%d/%m/%Y') `Data emprestimo`,
-                            DATE_FORMAT(data_devolucao,'%d/%m/%Y') `Data Devolução`,
-                            codigo_supervisor `Codigo supervisor`,
-                            funcionario_matricula `Matricula funcionário`,
-                            T3.nome `Nome funcionário`,
-                            status_devolucao `Status devolução`
-                    FROM emprestimo T1
-INNER  JOIN livro T2 
-	ON (T1.livro_ID = T2.ID)
-INNER JOIN funcionario T3 
-	ON (T1.funcionario_matricula = T3.matricula) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_emprestimo` AS select `t1`.`livro_ID` AS `Codigo livro`,`t2`.`titulo` AS `Titulo`,date_format(`t1`.`data_emprestimo`,'%d/%m/%Y') AS `Data emprestimo`,date_format(`t1`.`data_devolucao`,'%d/%m/%Y') AS `Data Devolução`,`t1`.`codigo_supervisor` AS `Codigo supervisor`,`t1`.`funcionario_matricula` AS `Matricula usuário`,`t3`.`nome` AS `Nome usuário`,`t1`.`status_devolucao` AS `Status devolução` from ((`emprestimo` `t1` join `livro` `t2` on((`t1`.`livro_ID` = `t2`.`ID`))) join `funcionario` `t3` on((`t1`.`funcionario_matricula` = `t3`.`matricula`)));
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;

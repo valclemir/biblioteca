@@ -138,7 +138,7 @@ $((function(){
             $("#RelatorioEditoras").hide() 
         }
         if ($(this).val() == "101"){
-            DivTabela = 'RelatorioEmprestimos'
+            //DivTabela = 'RelatorioEmprestimos'
             $("#RelatorioLivrosExistentes").empty()
             $("#RelatorioLivrosExistentes").hide()
             $("#RelatorioFuncionarios").empty()
@@ -164,7 +164,7 @@ $((function(){
             //$("#'RelatorioLivrosExistentes'").hide()
         }
         else if ($(this).val() == "102") {
-            DivTabela = 'RelatorioLivrosExistentes'
+            //DivTabela = 'RelatorioLivrosExistentes'
             $("#RelatorioEmprestimos").empty()
             $("#RelatorioEmprestimos").hide()
             $("#DivLabelCodigoLivro").hide() 
@@ -187,7 +187,7 @@ $((function(){
             
         }
         else if ($(this).val() == "103"){
-            DivTabela = 'RelatorioFuncionarios'
+            //DivTabela = 'RelatorioFuncionarios'
             $("#RelatorioEmprestimos").empty()
             $("#RelatorioEmprestimos").hide()
             $("#DivLabelCodigoLivro").hide() 
@@ -207,13 +207,43 @@ $((function(){
     
             $("#RelatorioFuncionarios").show()
         }
-        /*else if ($(this).val() == "104"){
-            
+        else if ($(this).val() == "104"){
+            $("#RelatorioEmprestimos").empty()
+            $("#RelatorioEmprestimos").hide()
+            $("#DivLabelCodigoLivro").hide() 
+            $("#RelatorioLivrosExistentes").empty()
+            $("#RelatorioLivrosExistentes").hide() 
+            $("#RelatorioEditoras").empty() 
+            $("#RelatorioEditoras").hide() 
+
+            $("#CadastroAutor").hide() //1
+            $("#CadastroEditora").hide(); //2
+            $("#CadastroArea").hide(); //3
+            $("#CadastroLivro").hide(); //4
+            $("#CadastroFuncionario").hide() //5
+            $("#CadastroEmprestimo").hide() //6
+    
+            $("#RelatorioAutores").show()
         }
         else if ($(this).val() == "105"){
+            $("#RelatorioEmprestimos").empty()
+            $("#RelatorioEmprestimos").hide()
+            $("#DivLabelCodigoLivro").hide() 
+            $("#RelatorioLivrosExistentes").empty()
+            $("#RelatorioLivrosExistentes").hide() 
+            $("#RelatorioAutores").empty() 
+            $("#RelatorioAutores").hide() 
+
+            $("#CadastroAutor").hide() //1
+            $("#CadastroEditora").hide(); //2
+            $("#CadastroArea").hide(); //3
+            $("#CadastroLivro").hide(); //4
+            $("#CadastroFuncionario").hide() //5
+            $("#CadastroEmprestimo").hide() //6
+    
+            $("#RelatorioEditoras").show() 
             
-            
-        }*/
+        }
         else if ($(this).val() == 1){
             $("#DivLabelCodigoLivro").hide()
             $("#CadastroAutor").show() //1
@@ -226,6 +256,8 @@ $((function(){
             $("#RelatorioEmprestimos").hide();//101
             $("#RelatorioLivrosExistentes").hide();//102
             $("#RelatorioFuncionarios").hide() //103
+            $("#RelatorioAutores").hide() //104
+            $("#RelatorioEditoras").hide() // 105
         }
     })
 }))

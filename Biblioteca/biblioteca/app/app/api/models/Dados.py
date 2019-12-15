@@ -121,12 +121,14 @@ class Dados:
         try: 
             con = Banco().connection()
             sql = ''
-            if dataProrrogacao is None:
-                sql = (f"""UPDATE emprestimo SET status_Devolucao = '{status}'
+            if  status == 'Prorrogado':
+                sql = (f"""UPDATE emprestimo SET status_Devolucao = '{status}',
+                                                 data_devolucao = '{dataProrrogacao}'
                             WHERE livro_ID = {codigoLivro} """)
 
-            else:
-                sql = (f"""UPDATE emprestimo SET status_Devolucao = '{status}', data_devolucao= '{dataProrrogacao}'
+            elif status == 'Devolvido':
+                sql = (f"""UPDATE emprestimo SET status_Devolucao = '{status}', 
+                                                data_devolucao= CURRENT_TIMESTAMP
                             WHERE livro_ID = {codigoLivro} """)
             
             cursor = con.cursor()
@@ -141,7 +143,7 @@ class Dados:
     def carregaAutores(self):
         try:
             con = Banco().connection()
-            sql = (f"""SELECT CONCAT(CAST(id AS VARCHAR(10)),'-',nome) nome FROM autor;""")
+            sql = (f"""SELECT CONCAT(CAST(id AS CHAR(10)),'-',nome) nome FROM autor;""")
             
             DFAutores = read_sql(sql, con)
             return DFAutores
@@ -154,7 +156,7 @@ class Dados:
     def carregaArea(self):
         try: 
             con = Banco().connection()
-            sql = (f"""SELECT CONCAT(CAST(id AS VARCHAR(10)),'-',nome) area FROM area;""")
+            sql = (f"""SELECT CONCAT(CAST(id AS CHAR(10)),'-',nome) area FROM area""")
             
             DFArea = read_sql(sql, con)
             return DFArea
@@ -166,7 +168,7 @@ class Dados:
     def carregaEditora(self):
         try: 
             con = Banco().connection() 
-            sql = (f"""SELECT CONCAT(CAST(id AS VARCHAR(10)),'-',nome) editora FROM editora;""")
+            sql = (f"""SELECT CONCAT(CAST(id AS CHAR(10)),'-',nome) editora FROM editora;""")
 
             DFEditora = read_sql(sql, Banco().connection())
             return DFEditora
@@ -176,23 +178,10 @@ class Dados:
             con.close() 
 
 
-    def carregaArea(self):
-        try:
-            con = Banco().connection() 
-            sql = (f"""SELECT CONCAT(CAST(id AS VARCHAR(10)),'-',nome) area FROM area; """)
-
-            DFArea = read_sql(sql, Banco().connection())
-            return DFArea
-        except Exception as e:
-            print(e)
-        finally:
-            con.close() 
-
-
     def carregaLivro(self, autor_id):
         try: 
             con = Banco().connection() 
-            sql = (f"""	SELECT CONCAT(CAST(ID AS VARCHAR(10)), '-', titulo) livros FROM livro
+            sql = (f"""	SELECT CONCAT(CAST(ID AS CHAR(10)), '-', titulo) livros FROM livro
                         WHERE area_id = {autor_id}
                         ORDER BY id""")
 
@@ -240,8 +229,8 @@ class Dados:
                                     `Data emprestimo`,
                                     `Data devolução`,
                                     `Codigo supervisor`,
-                                    `Matricula funcionário`,
-                                    `Nome funcionário`,
+                                    `Matricula usuário`,
+                                    `Nome usuário`,
                                     `Status devolução`
                             FROM VW_Emprestimo""")
                 DFEmprestimo = read_sql (sql, Banco().connection())

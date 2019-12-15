@@ -33,7 +33,7 @@ function carregaAutores(){
         type: 'GET',
         datatype: "",
         success: function(dados){
-            console.log(dados)
+            //console.log(dados)
             dados.forEach(i => {
                 $("#AutorID").append(
                     $("<option ></option>")
@@ -51,7 +51,7 @@ function carregaEditora(){
         type: 'GET',
         datatype: "",
         success: function(dados){
-            console.log(dados)
+            //console.log(dados)
             dados.forEach(i => {
                 $("#EditoraID").append(
                     $("<option ></option>")
@@ -69,7 +69,7 @@ function carregaGenero(){
         type: 'GET',
         datatype: "",
         success: function(dados){
-            console.log(dados)
+            //console.log(dados)
             dados.forEach(i => {
                 $("#AreaIDEmprestimo").append(
                     $("<option ></option>")

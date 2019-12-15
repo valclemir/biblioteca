@@ -26,7 +26,7 @@ function redenrizaTabela (data, tableIdName, div){
         
     })
     console.log(cabecalho)
-    document.getElementById(''+div+'').innerHTML = tabela + cabecalho + body + cabecalho + final
+    document.getElementById(''+div+'').innerHTML = tabela + cabecalho + body + cabecalho + final;
 }
 
 
@@ -90,7 +90,9 @@ $("#acao").on("change", function(){
 
         $("#RelatorioEditoras").show()
     }
-
+    else {
+        return 
+    }
     $.ajax({
         url: "/busca-colunas-json/"+acao,
         type: "POST",
@@ -123,7 +125,7 @@ $("#acao").on("change", function(){
                             //console.log('<a href="'+recebeLista+'">')
                         });
 
-                        console.log(recebeLista)
+                        //console.log(recebeLista)
 
                         return recebeLista
                         
@@ -135,16 +137,19 @@ $("#acao").on("change", function(){
                     "scrollCollapse": true,
                     "scrollX": true,
                     "createdRow": function( row, data, dataIndex ) {
-                        console.log(data)
+                        //console.log(data)
                         var today = new Date();
                         var dd = String(today.getDate()).padStart(2, '0');
                         var mm = String(today.getMonth() + 1).padStart(2, '0');
                         var yyyy = today.getFullYear();
                         today = dd + '/' + mm + '/' + yyyy;
-                        console.log(data["Data Devolução"], today, data["Data Devolução"] < today)
-                        // Verifica se existe atraso na entrega do livro
-                        if ((data["Data Devolução"] < today) && (data["Data Devolução"] == "Em aberto" || data["Status devolução"] == "Prorrogado")){
+                        
+                        // Verifica se existe atraso na entrega do livro  
+                        if (today > data["Data Devolução"] && data["Status devolução"].includes('Em aberto') == true){// || data["Status devolução"] == "Prorrogado")){
                             $( row ).css( "background-color", "red" );
+                        }
+                        if (today < data["Data Devolução"] && data["Status devolução"].includes('Prorrogado') == true){// || data["Status devolução"] == "Prorrogado")){
+                            $( row ).css( "background-color", "yellow" );
                         }
                     },
                     //"retrieve": true,

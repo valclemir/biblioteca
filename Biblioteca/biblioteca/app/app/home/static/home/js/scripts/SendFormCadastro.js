@@ -248,9 +248,31 @@ function SalvaEmprestimo(){
 
 //Baixas livro 
 function BaixasLivro(){
+    let alerta = ''
     var codigoLivro = $('input[name="DivCodigoLivro"]').val()
     var statusPedido = $('select[name="BaixaStatusDevolucao"]').val()
     var dataProrrogacao = $('input[name="BaixaDataProrrogacao"]').val()
+    if (codigoLivro == ''){
+        $('#DivCodigoLivro').focus()
+        return 
+    }
+    if (statusPedido.includes('Devolvido') == true && dataProrrogacao == ''){
+        alerta = 'Livro entregue!';
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0');
+        var yyyy = today.getFullYear();
+        today = dd + '/' + mm + '/' + yyyy;
+        dataProrrogacao = today; 
+        
+    }
+    if (statusPedido.includes('Prorrogado') == true && dataProrrogacao != ''){
+        alerta = 'Livro prorrogado!'
+    }
+    else if (dataProrrogacao == '' && statusPedido.includes('Devolvido') == false){
+        $("#BaixaDataProrrogacao").focus()
+        return 
+    }
     $.ajax({
         url: "/salva-baixa-livro-banco",
         type: "POST",
@@ -258,7 +280,8 @@ function BaixasLivro(){
                 'statusPedido': statusPedido,
                 'dataProrrogacao': dataProrrogacao},
         success: function (){
-            alert('Livro entregue!')
+            alert(alerta)
+            window.location.href = '/home'
         },
         error: function(request, status, erro){
             alert (erro)

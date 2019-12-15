@@ -6,7 +6,7 @@ $("#AreaIDEmprestimo").on("change", function(){
         type: 'GET',
         datatype: "",
         success: function(dados){
-            console.log(dados)
+            //console.log(dados)
             dados.forEach(i => {
                 $("#LivroIDEmprestimo").empty()
                 $("#LivroIDEmprestimo").append(
